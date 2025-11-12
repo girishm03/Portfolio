@@ -3,15 +3,14 @@ import { Progress } from "@/components/ui/progress";
 import { skills } from "@/lib/data";
 
 export function Skills() {
+    const allSkills = skills.flatMap(category => category.items);
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {skills.map((skillCategory) => (
-        <Card key={skillCategory.category}>
-          <CardHeader>
-            <CardTitle>{skillCategory.category}</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-6">
-            {skillCategory.items.map((skill) => (
+    <Card>
+        <CardHeader>
+            <CardTitle>My Technical Skills</CardTitle>
+        </CardHeader>
+        <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {allSkills.map((skill) => (
               <div key={skill.name} className="space-y-2">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-2">
@@ -23,9 +22,7 @@ export function Skills() {
                 <Progress value={skill.level} aria-label={`${skill.name} proficiency`} />
               </div>
             ))}
-          </CardContent>
-        </Card>
-      ))}
-    </div>
+        </CardContent>
+    </Card>
   );
 }

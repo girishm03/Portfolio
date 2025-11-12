@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Github, ExternalLink } from "lucide-react";
+import { Github } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -37,14 +37,6 @@ export function Projects() {
                 GitHub
               </Link>
             </Button>
-            {project.liveUrl && (
-              <Button asChild>
-                <Link href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                  <ExternalLink className="mr-2 h-4 w-4" />
-                  Live Demo
-                </Link>
-              </Button>
-            )}
           </CardFooter>
         </Card>
       ))}
