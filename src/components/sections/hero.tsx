@@ -13,6 +13,16 @@ export function Hero() {
   const profileImageUrl = images.profile;
   const heroBgImageUrl = images.heroBg;
 
+  const roles = [
+      "Python Developer",
+      "Full Stack Developer",
+      "Cyber Security Analyst",
+      "BCA Graduate",
+      "Django Developer",
+      "Web Developer",
+      "Front-end Developer"
+  ]
+
   // Render skeleton or default while waiting for store to hydrate
   if (!isInitialized) {
     return (
@@ -56,7 +66,7 @@ export function Hero() {
               {hero.name}
             </h1>
             <div className="mx-auto max-w-[700px] text-primary md:text-xl">
-              <TypingAnimation roles={[hero.title]} />
+              <TypingAnimation roles={roles} />
             </div>
           </div>
           <div className="space-x-4">
