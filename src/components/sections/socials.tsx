@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Github, Linkedin, Instagram, Twitter, MessageSquare } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { usePortfolioStore } from "@/lib/portfolio-store";
+import { defaultSocialLinks } from "@/lib/data";
 
 const iconMap: { [key: string]: React.ComponentType<any> } = {
   Linkedin,
@@ -14,8 +14,7 @@ const iconMap: { [key: string]: React.ComponentType<any> } = {
 };
 
 export function Socials() {
-  const { data: portfolioData } = usePortfolioStore();
-  const socialLinks = portfolioData.socials || [];
+  const socialLinks = defaultSocialLinks || [];
 
   return (
     <div className="flex justify-center space-x-4">

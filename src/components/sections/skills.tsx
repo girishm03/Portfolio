@@ -2,7 +2,7 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
-import { usePortfolioStore } from "@/lib/portfolio-store";
+import { defaultSkills } from "@/lib/data";
 import { PythonIcon, DjangoIcon, ReactIcon, FlaskIcon } from "@/components/icons";
 import { useMemo } from "react";
 
@@ -14,16 +14,15 @@ const iconMap: { [key: string]: React.ComponentType<any> } = {
 };
 
 export function Skills() {
-    const { data: portfolioData } = usePortfolioStore();
     const skills = useMemo(() => {
-        return portfolioData.skills.map(skill => {
+        return defaultSkills.map(skill => {
             const IconComponent = skill.iconName ? iconMap[skill.iconName] : null;
             return {
                 ...skill,
                 icon: IconComponent,
             }
         })
-    }, [portfolioData.skills]);
+    }, [defaultSkills]);
 
     return (
         <Card>

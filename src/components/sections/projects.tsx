@@ -12,11 +12,10 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { usePortfolioStore } from "@/lib/portfolio-store";
+import { defaultProjects } from "@/lib/data";
 
 export function Projects() {
-  const { data: portfolioData } = usePortfolioStore();
-  const { projects } = portfolioData;
+  const projects = defaultProjects;
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
       {projects.map((project) => (

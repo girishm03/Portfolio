@@ -1,14 +1,12 @@
-
 "use client";
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Socials } from "./socials";
-import { usePortfolioStore } from "@/lib/portfolio-store";
+import { defaultData } from "@/lib/data";
 
 export function About() {
-  const { data: portfolioData, isInitialized } = usePortfolioStore();
-  const { about } = portfolioData;
+  const { about } = defaultData;
 
   const personalInfo = [
     { label: "Email", value: about.email },
@@ -16,38 +14,6 @@ export function About() {
     { label: "Date of Birth", value: about.dob },
     { label: "Location", value: about.location },
   ];
-
-  if (!isInitialized) {
-      // You can return a skeleton loader here
-      return (
-        <div className="grid gap-12 md:grid-cols-2 animate-pulse">
-            <div className="space-y-6">
-                <div className="space-y-4">
-                    <div className="h-10 bg-muted rounded w-1/3"></div>
-                    <div className="space-y-2">
-                        <div className="h-6 bg-muted rounded"></div>
-                        <div className="h-6 bg-muted rounded w-5/6"></div>
-                        <div className="h-6 bg-muted rounded w-4/6"></div>
-                    </div>
-                </div>
-                <div className="h-10 bg-muted rounded w-32"></div>
-            </div>
-            <div className="space-y-8">
-                 <div className="space-y-4">
-                    <div className="h-8 bg-muted rounded w-1/2"></div>
-                     <div className="space-y-2">
-                        <div className="h-5 bg-muted rounded"></div>
-                        <div className="h-5 bg-muted rounded"></div>
-                    </div>
-                </div>
-                <div className="space-y-4">
-                    <div className="h-8 bg-muted rounded w-1/2"></div>
-                     <div className="h-10 bg-muted rounded w-full"></div>
-                </div>
-            </div>
-        </div>
-      )
-  }
 
   return (
     <div className="grid gap-12 md:grid-cols-2">

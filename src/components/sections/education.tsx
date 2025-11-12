@@ -7,11 +7,11 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { usePortfolioStore } from "@/lib/portfolio-store";
+import { defaultEducation } from "@/lib/data";
+
 
 export function Education() {
-  const { data: portfolioData } = usePortfolioStore();
-  const { education } = portfolioData;
+  const education = defaultEducation;
 
   return (
     <div className="space-y-8">

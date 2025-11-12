@@ -4,11 +4,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { TypingAnimation } from "@/components/typing-animation";
-import { usePortfolioStore } from "@/lib/portfolio-store";
+import { defaultData } from "@/lib/data";
 
 export function Hero() {
-  const { data: portfolioData, isInitialized } = usePortfolioStore();
-  const { hero, images } = portfolioData;
+  const { hero, images } = defaultData;
 
   const profileImageUrl = images.profile;
   const heroBgImageUrl = images.heroBg;
@@ -22,21 +21,6 @@ export function Hero() {
       "Web Developer",
       "Front-end Developer"
   ]
-
-  // Render skeleton or default while waiting for store to hydrate
-  if (!isInitialized) {
-    return (
-      <section className="relative w-full h-[80vh] md:h-screen flex items-center justify-center bg-muted/40">
-        <div className="container px-4 md:px-6 text-center">
-            <div className="animate-pulse">
-                <div className="mx-auto rounded-full bg-muted h-36 w-36 mb-4"></div>
-                <div className="h-12 bg-muted rounded w-3/4 mx-auto mb-4"></div>
-                <div className="h-8 bg-muted rounded w-1/2 mx-auto"></div>
-            </div>
-        </div>
-      </section>
-    );
-  }
 
   return (
     <section className="relative w-full h-[80vh] md:h-screen flex items-center justify-center">
