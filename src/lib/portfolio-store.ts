@@ -1,3 +1,4 @@
+
 "use client";
 
 import { create } from 'zustand';
@@ -7,7 +8,6 @@ import { defaultProjects, defaultEducation, defaultSkills, defaultSocialLinks } 
 const defaultData = {
   hero: {
     name: 'Girish M',
-    title: 'Python Developer',
   },
   about: {
     description1: "As a dedicated Python developer with over 5 years of experience, I specialize in crafting high-performance backend systems and scalable web applications. My journey in software development began with a fascination for automation, which quickly evolved into a passion for building solutions that are not only functional but also elegant and efficient.",

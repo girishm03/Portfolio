@@ -1,3 +1,4 @@
+
 import { PythonIcon, DjangoIcon, ReactIcon, FlaskIcon } from "@/components/icons";
 
 export const defaultProjects = [
@@ -40,6 +41,12 @@ export const defaultEducation = [
     year: "2014 - 2018",
     description: "Graduated with honors. Coursework included data structures, web development, and software architecture.",
   },
+  {
+    degree: "Certified Python Developer (PCAP)",
+    institution: "Python Institute",
+    year: "2021",
+    description: "PCAP – Certified Associate in Python Programming certification, demonstrating proficiency in Python programming.",
+  }
 ];
 
 // Note: Icons can't be serialized in the same way, so we'll handle them separately

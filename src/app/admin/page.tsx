@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState } from 'react';
@@ -278,11 +279,11 @@ export default function AdminPage() {
             </Card>
 
             <Card>
-                <CardHeader><CardTitle>Education</CardTitle></CardHeader>
+                <CardHeader><CardTitle>Education & Certifications</CardTitle></CardHeader>
                 <CardContent className="space-y-4">
                     {data.education.map((edu, index) => (
                         <div key={index} className="space-y-2 border p-2 rounded-md relative">
-                            <Input value={edu.degree} onChange={(e) => handleListItemChange('education', index, 'degree', e.target.value)} placeholder="Degree"/>
+                            <Input value={edu.degree} onChange={(e) => handleListItemChange('education', index, 'degree', e.target.value)} placeholder="Degree / Certificate"/>
                             <Input value={edu.institution} onChange={(e) => handleListItemChange('education', index, 'institution', e.target.value)} placeholder="Institution"/>
                             <Input value={edu.year} onChange={(e) => handleListItemChange('education', index, 'year', e.target.value)} placeholder="Year"/>
                             <Textarea value={edu.description} onChange={(e) => handleListItemChange('education', index, 'description', e.target.value)} placeholder="Description"/>
