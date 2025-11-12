@@ -1,7 +1,7 @@
 "use client";
 
-import { useFormState, useFormStatus } from 'react-dom';
-import { useEffect } from 'react';
+import { useActionState, useEffect } from 'react';
+import { useFormStatus } from 'react-dom';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -34,7 +34,7 @@ function SubmitButton() {
 
 export function ContactForm() {
   const { toast } = useToast();
-  const [state, formAction] = useFormState<ContactFormState, FormData>(sendContactMessage, {
+  const [state, formAction] = useActionState<ContactFormState, FormData>(sendContactMessage, {
     message: '',
   });
 
@@ -45,7 +45,7 @@ export function ContactForm() {
       email: '',
       message: '',
     },
-    // The useFormState provides the errors, so we pass them to the form
+    // The useActionState provides the errors, so we pass them to the form
     errors: state.fields ? (state.fields as any) : undefined,
   });
 
