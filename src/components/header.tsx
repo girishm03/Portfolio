@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, Code2 } from "lucide-react";
+import { Menu, Code2, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Sheet,
@@ -83,7 +83,15 @@ export function Header() {
             <Code2 className="h-6 w-6 text-primary" />
             <span className="font-bold">Girish M</span>
           </Link>
-          <ThemeToggle />
+          <div className="flex items-center gap-2">
+            <ThemeToggle />
+            <Button variant="outline" size="icon" asChild>
+                <Link href="/login">
+                    <Shield className="h-5 w-5" />
+                    <span className="sr-only">Admin</span>
+                </Link>
+            </Button>
+          </div>
         </div>
       </div>
     </header>

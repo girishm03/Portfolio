@@ -2,9 +2,13 @@
 
 import React, { useState, useEffect } from 'react';
 
-const roles = ["Python Developer", "Backend Engineer", "Web Developer"];
+const defaultRoles = ["Python Developer", "Backend Engineer", "Web Developer"];
 
-export function TypingAnimation() {
+interface TypingAnimationProps {
+  roles?: string[];
+}
+
+export function TypingAnimation({ roles = defaultRoles }: TypingAnimationProps) {
   const [text, setText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [loopNum, setLoopNum] = useState(0);
@@ -37,7 +41,7 @@ export function TypingAnimation() {
     }, typingSpeed);
 
     return () => clearTimeout(ticker);
-  }, [text, isDeleting, loopNum, typingSpeed]);
+  }, [text, isDeleting, loopNum, roles, typingSpeed]);
 
   return (
     <span>
