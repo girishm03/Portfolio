@@ -27,7 +27,7 @@ export function Header() {
           <Link href="/" className="mr-6 flex items-center space-x-2">
             <Code2 className="h-6 w-6 text-primary" />
             <span className="hidden font-bold sm:inline-block">
-              Portfolio
+              Girish
             </span>
           </Link>
           <nav className="flex items-center space-x-6 text-sm font-medium">
@@ -58,7 +58,7 @@ export function Header() {
           <SheetContent side="left">
             <Link href="/" className="mr-6 flex items-center space-x-2 mb-6">
               <Code2 className="h-6 w-6 text-primary" />
-              <span className="font-bold">Portfolio</span>
+              <span className="font-bold">Girish</span>
             </Link>
             <nav className="flex flex-col space-y-4">
               {navLinks.map((link) => (
@@ -81,7 +81,7 @@ export function Header() {
             className="flex items-center space-x-2 md:hidden"
           >
             <Code2 className="h-6 w-6 text-primary" />
-            <span className="font-bold">Portfolio</span>
+            <span className="font-bold">Girish</span>
           </Link>
           <div className="flex items-center gap-2">
             <ThemeToggle />
