@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { skills } from "@/lib/data";
 
@@ -6,10 +6,7 @@ export function Skills() {
     const allSkills = skills.flatMap(category => category.items);
   return (
     <Card>
-        <CardHeader>
-            <CardTitle>My Technical Skills</CardTitle>
-        </CardHeader>
-        <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <CardContent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 pt-6">
             {allSkills.map((skill) => (
               <div key={skill.name} className="space-y-2">
                 <div className="flex items-center justify-between">
