@@ -62,7 +62,7 @@ export function About() {
           </p>
         </div>
         <Button asChild>
-          <Link href={about.resumeUrl} target="_blank" rel="noopener noreferrer">Download Resume</Link>
+          <Link href={about.resumeUrl} target="_blank" rel="noopener noreferrer">Resume</Link>
         </Button>
       </div>
       <div className="space-y-8 md:pt-14">
@@ -84,3 +84,5 @@ export function About() {
     </div>
   );
 }
+
+    
