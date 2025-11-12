@@ -158,7 +158,7 @@ export default function AdminPage() {
                 />
               </div>
               <div>
-                <Label htmlFor="hero-title">Title (for typing animation)</Label>
+                <Label htmlFor="hero-title">Title</Label>
                 <Input
                   id="hero-title"
                   value={data.hero.title}
@@ -328,3 +328,5 @@ export default function AdminPage() {
     </div>
   );
 }
+
+    
