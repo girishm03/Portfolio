@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -6,7 +7,8 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
-import { Shield } from 'lucide-react';
+import { ArrowLeft, Shield } from 'lucide-react';
+import Link from 'next/link';
 
 export default function LoginPage() {
   const [command, setCommand] = useState('');
@@ -33,7 +35,13 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
+    <div className="relative flex min-h-screen items-center justify-center bg-background">
+       <Button variant="outline" size="icon" className="absolute top-4 right-4" asChild>
+            <Link href="/">
+                <ArrowLeft />
+                <span className="sr-only">Back to homepage</span>
+            </Link>
+        </Button>
       <Card className="w-full max-w-sm">
         <CardHeader className="text-center">
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
