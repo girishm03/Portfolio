@@ -279,7 +279,7 @@ export default function AdminPage() {
             </Card>
 
             <Card>
-                <CardHeader><CardTitle>Education & Certifications</CardTitle></CardHeader>
+                <CardHeader><CardTitle>Education</CardTitle></CardHeader>
                 <CardContent className="space-y-4">
                     {data.education.map((edu, index) => (
                         <div key={index} className="space-y-2 border p-2 rounded-md relative">
