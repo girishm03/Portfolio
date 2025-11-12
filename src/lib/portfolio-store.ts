@@ -1,7 +1,8 @@
 "use client";
 
 import { create } from 'zustand';
-import { persist, createJSONStorage } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware';
+import { defaultProjects, defaultEducation, defaultSkills, defaultSocialLinks } from '@/lib/data';
 
 const defaultData = {
   hero: {
@@ -20,14 +21,19 @@ const defaultData = {
   images: {
     profile: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjI4NjA5NzB8MA&ixlib=rb-4.1.0&q=80&w=1080',
     heroBg: 'https://images.unsplash.com/photo-1617040619263-41c5a9ca7521?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZGFyayUyMGNvZGV8ZW58MHx8fHwxNzYyODQ4ODM1fDA&ixlib=rb-4.1.0&q=80&w=1080',
-  }
+  },
+  projects: defaultProjects,
+  education: defaultEducation,
+  skills: defaultSkills,
+  socials: defaultSocialLinks,
 };
 
-type PortfolioData = typeof defaultData;
+export type PortfolioData = typeof defaultData;
 
 type PortfolioState = {
   data: PortfolioData;
   isInitialized: boolean;
+  setData: (data: PortfolioData) => void;
 };
 
 // This is a zustand store that persists to localStorage.
@@ -37,6 +43,7 @@ export const usePortfolioStore = create<PortfolioState>()(
     (set) => ({
       data: defaultData,
       isInitialized: false,
+      setData: (newData) => set({ data: newData }),
     }),
     {
       name: 'portfolio-data-storage', // name of the item in the storage (must be unique)

@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Card,
   CardContent,
@@ -5,9 +7,12 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { education } from "@/lib/data";
+import { usePortfolioStore } from "@/lib/portfolio-store";
 
 export function Education() {
+  const { data: portfolioData } = usePortfolioStore();
+  const { education } = portfolioData;
+
   return (
     <div className="space-y-8">
       {education.map((edu, index) => (

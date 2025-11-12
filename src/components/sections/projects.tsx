@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Github } from "lucide-react";
 import {
@@ -10,9 +12,11 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { projects } from "@/lib/data";
+import { usePortfolioStore } from "@/lib/portfolio-store";
 
 export function Projects() {
+  const { data: portfolioData } = usePortfolioStore();
+  const { projects } = portfolioData;
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
       {projects.map((project) => (
@@ -23,7 +27,7 @@ export function Projects() {
           </CardHeader>
           <CardContent className="flex-grow">
             <div className="flex flex-wrap gap-2">
-              {project.technologies.map((tech) => (
+              {project.technologies.split(',').map(tech => tech.trim()).map((tech) => (
                 <Badge key={tech} variant="secondary">
                   {tech}
                 </Badge>

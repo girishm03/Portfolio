@@ -7,11 +7,12 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { LogOut } from 'lucide-react';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { LogOut, Trash2 } from 'lucide-react';
+import { usePortfolioStore } from '@/lib/portfolio-store';
+import { defaultProjects, defaultEducation, defaultSkills, defaultSocialLinks } from '@/lib/data';
 
-// This is a mock data store. In a real application, you'd fetch this from a database.
-const initialPortfolioData = {
+const defaultData = {
   hero: {
     name: 'Girish M',
     title: 'Python Developer',
@@ -28,15 +29,21 @@ const initialPortfolioData = {
   images: {
     profile: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjI4NjA5NzB8MA&ixlib=rb-4.1.0&q=80&w=1080',
     heroBg: 'https://images.unsplash.com/photo-1617040619263-41c5a9ca7521?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZGFyayUyMGNvZGV8ZW58MHx8fHwxNzYyODQ4ODM1fDA&ixlib=rb-4.1.0&q=80&w=1080',
-  }
+  },
+  projects: defaultProjects,
+  education: defaultEducation,
+  skills: defaultSkills,
+  socials: defaultSocialLinks,
 };
 
 
 export default function AdminPage() {
   const router = useRouter();
   const { toast } = useToast();
+  const { data: portfolioData, setData, isInitialized } = usePortfolioStore();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [data, setData] = useState(initialPortfolioData);
+  const [data, setLocalData] = useState(portfolioData);
+
 
   useEffect(() => {
     const isAdmin = localStorage.getItem('isAdmin') === 'true';
@@ -44,21 +51,19 @@ export default function AdminPage() {
       router.push('/login');
     } else {
       setIsAuthenticated(true);
-      // In a real app, load data from localStorage or a DB
-      const savedData = localStorage.getItem('portfolioData');
-      if (savedData) {
-        setData(JSON.parse(savedData));
+      if (isInitialized) {
+        setLocalData(portfolioData);
       }
     }
-  }, [router]);
+  }, [router, isInitialized, portfolioData]);
 
   const handleLogout = () => {
     localStorage.removeItem('isAdmin');
     router.push('/');
   };
 
-  const handleInputChange = (section: string, field: string, value: string) => {
-    setData(prevData => ({
+  const handleInputChange = (section: string, field: string, value: any) => {
+    setLocalData(prevData => ({
       ...prevData,
       [section]: {
         ...(prevData as any)[section],
@@ -67,10 +72,46 @@ export default function AdminPage() {
     }));
   };
 
+  const handleListItemChange = (section: 'skills' | 'projects' | 'education' | 'socials', index: number, field: string, value: any) => {
+    setLocalData(prevData => {
+        const list = [...(prevData[section] as any[])];
+        list[index] = { ...list[index], [field]: value };
+        return { ...prevData, [section]: list };
+    });
+  };
+
+  const addListItem = (section: 'skills' | 'projects' | 'education' | 'socials') => {
+      setLocalData(prevData => {
+          const list = [...(prevData[section] as any[])];
+          const newItem = section === 'skills' ? { name: '', level: 50, iconName: '' } :
+                          section === 'projects' ? { title: '', description: '', technologies: '', githubUrl: '' } :
+                          section === 'education' ? { degree: '', institution: '', year: '', description: '' } :
+                          { label: '', href: '', iconName: 'Link' };
+          return { ...prevData, [section]: [...list, newItem] };
+      });
+  };
+
+  const removeListItem = (section: 'skills' | 'projects' | 'education' | 'socials', index: number) => {
+      setLocalData(prevData => {
+          const list = [...(prevData[section] as any[])];
+          list.splice(index, 1);
+          return { ...prevData, [section]: list };
+      });
+  };
+
+  const handleFileChange = (section: string, field: string, e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        handleInputChange(section, field, reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleSave = () => {
-    // In a real app, you'd save this to a database.
-    // For this prototype, we'll use localStorage.
-    localStorage.setItem('portfolioData', JSON.stringify(data));
+    setData(data);
     toast({
       title: 'Content Saved!',
       description: 'Your portfolio has been updated.',
@@ -78,15 +119,15 @@ export default function AdminPage() {
   };
   
   const handleReset = () => {
-    setData(initialPortfolioData);
-    localStorage.removeItem('portfolioData');
+    setLocalData(defaultData);
+    setData(defaultData);
     toast({
       title: 'Content Reset!',
       description: 'Your portfolio has been reset to the default content.',
     });
   };
 
-  if (!isAuthenticated) {
+  if (!isAuthenticated || !isInitialized) {
     return null; // Or a loading spinner
   }
 
@@ -151,12 +192,14 @@ export default function AdminPage() {
                 />
               </div>
               <div>
-                <Label htmlFor="about-resume">Resume URL</Label>
+                <Label htmlFor="about-resume">Resume (PDF)</Label>
                 <Input
                   id="about-resume"
-                  value={data.about.resumeUrl}
-                  onChange={(e) => handleInputChange('about', 'resumeUrl', e.target.value)}
+                  type="file"
+                  accept=".pdf"
+                  onChange={(e) => handleFileChange('about', 'resumeUrl', e)}
                 />
+                {data.about.resumeUrl && <a href={data.about.resumeUrl} target="_blank" rel="noopener noreferrer" className="text-sm text-primary hover:underline mt-2 inline-block">View Current Resume</a>}
               </div>
               <div className="grid grid-cols-2 gap-4">
                  <div>
@@ -185,23 +228,96 @@ export default function AdminPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <div>
-                <Label htmlFor="image-profile">Profile Picture URL</Label>
+                <Label htmlFor="image-profile">Profile Picture</Label>
                 <Input
                   id="image-profile"
-                  value={data.images.profile}
-                  onChange={(e) => handleInputChange('images', 'profile', e.target.value)}
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => handleFileChange('images', 'profile', e)}
                 />
               </div>
                <div>
-                <Label htmlFor="image-hero-bg">Hero Background URL</Label>
+                <Label htmlFor="image-hero-bg">Hero Background</Label>
                 <Input
                   id="image-hero-bg"
-                  value={data.images.heroBg}
-                  onChange={(e) => handleInputChange('images', 'heroBg', e.target.value)}
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => handleFileChange('images', 'heroBg', e)}
                 />
               </div>
             </CardContent>
           </Card>
+
+          <Card>
+            <CardHeader>
+                <CardTitle>Social Links</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+                {data.socials.map((social, index) => (
+                    <div key={index} className="flex items-end gap-2 border p-2 rounded-md">
+                        <div className="flex-1 grid grid-cols-3 gap-2">
+                            <Input value={social.label} onChange={(e) => handleListItemChange('socials', index, 'label', e.target.value)} placeholder="Label (e.g. LinkedIn)"/>
+                            <Input value={social.href} onChange={(e) => handleListItemChange('socials', index, 'href', e.target.value)} placeholder="URL"/>
+                            <Input value={social.iconName} onChange={(e) => handleListItemChange('socials', index, 'iconName', e.target.value)} placeholder="Icon Name (e.g. Linkedin)"/>
+                        </div>
+                        <Button variant="destructive" size="icon" onClick={() => removeListItem('socials', index)}><Trash2 /></Button>
+                    </div>
+                ))}
+                <Button variant="outline" onClick={() => addListItem('socials')}>Add Social Link</Button>
+                 <CardDescription>Icon names from lucide-react: Github, Linkedin, Instagram, Twitter, MessageSquare</CardDescription>
+            </CardContent>
+          </Card>
+
+           <Card>
+                <CardHeader><CardTitle>Skills</CardTitle></CardHeader>
+                <CardContent className="space-y-4">
+                    {data.skills.map((skill, index) => (
+                         <div key={index} className="flex items-end gap-2 border p-2 rounded-md">
+                            <div className="flex-1 grid grid-cols-3 gap-2">
+                                <Input value={skill.name} onChange={(e) => handleListItemChange('skills', index, 'name', e.target.value)} placeholder="Skill Name"/>
+                                <Input type="number" value={skill.level} onChange={(e) => handleListItemChange('skills', index, 'level', parseInt(e.target.value))} placeholder="Level (1-100)"/>
+                                <Input value={skill.iconName} onChange={(e) => handleListItemChange('skills', index, 'iconName', e.target.value)} placeholder="Icon Name"/>
+                            </div>
+                            <Button variant="destructive" size="icon" onClick={() => removeListItem('skills', index)}><Trash2/></Button>
+                        </div>
+                    ))}
+                    <Button variant="outline" onClick={() => addListItem('skills')}>Add Skill</Button>
+                    <CardDescription>Icon names: PythonIcon, DjangoIcon, FlaskIcon, ReactIcon</CardDescription>
+                </CardContent>
+            </Card>
+
+            <Card>
+                <CardHeader><CardTitle>Education</CardTitle></CardHeader>
+                <CardContent className="space-y-4">
+                    {data.education.map((edu, index) => (
+                        <div key={index} className="space-y-2 border p-2 rounded-md relative">
+                            <Input value={edu.degree} onChange={(e) => handleListItemChange('education', index, 'degree', e.target.value)} placeholder="Degree"/>
+                            <Input value={edu.institution} onChange={(e) => handleListItemChange('education', index, 'institution', e.target.value)} placeholder="Institution"/>
+                            <Input value={edu.year} onChange={(e) => handleListItemChange('education', index, 'year', e.target.value)} placeholder="Year"/>
+                            <Textarea value={edu.description} onChange={(e) => handleListItemChange('education', index, 'description', e.target.value)} placeholder="Description"/>
+                            <Button className="absolute top-2 right-2" variant="destructive" size="icon" onClick={() => removeListItem('education', index)}><Trash2/></Button>
+                        </div>
+                    ))}
+                    <Button variant="outline" onClick={() => addListItem('education')}>Add Education</Button>
+                </CardContent>
+            </Card>
+            
+            <Card>
+                <CardHeader><CardTitle>Projects</CardTitle></CardHeader>
+                <CardContent className="space-y-4">
+                    {data.projects.map((proj, index) => (
+                        <div key={index} className="space-y-2 border p-2 rounded-md relative">
+                            <Input value={proj.title} onChange={(e) => handleListItemChange('projects', index, 'title', e.target.value)} placeholder="Project Title"/>
+                            <Textarea value={proj.description} onChange={(e) => handleListItemChange('projects', index, 'description', e.target.value)} placeholder="Description"/>
+                            <Input value={proj.technologies} onChange={(e) => handleListItemChange('projects', index, 'technologies', e.target.value)} placeholder="Technologies (comma separated)"/>
+                            <Input value={proj.githubUrl} onChange={(e) => handleListItemChange('projects', index, 'githubUrl', e.target.value)} placeholder="GitHub URL"/>
+                            <Button className="absolute top-2 right-2" variant="destructive" size="icon" onClick={() => removeListItem('projects', index)}><Trash2/></Button>
+                        </div>
+                    ))}
+                    <Button variant="outline" onClick={() => addListItem('projects')}>Add Project</Button>
+                </CardContent>
+            </Card>
+
 
           <div className="flex justify-end gap-4">
             <Button variant="outline" onClick={handleReset}>Reset to Default</Button>
