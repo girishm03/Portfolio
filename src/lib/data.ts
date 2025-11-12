@@ -1,4 +1,5 @@
 
+
 import { PythonIcon, DjangoIcon, ReactIcon, FlaskIcon } from "@/components/icons";
 
 export const defaultData = {
@@ -15,8 +16,8 @@ export const defaultData = {
     location: 'Kottayam, Kerala, India',
   },
   images: {
-    profile: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBwb3J0cmFpdHxlbnwwfHx8fDE3NjI4NjA5NzB8MA&ixlib=rb-4.1.0&q=80&w=1080',
-    heroBg: 'https://images.unsplash.com/photo-1617040619263-41c5a9ca7521?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8ZGFyayUyMGNvZGV8ZW58MHx8fHwxNzYyODQ4ODM1fDA&ixlib=rb-4.1.0&q=80&w=1080',
+    profile: '/profile.jpg',
+    heroBg: '/background.jpg',
   },
   projects: [
       {
