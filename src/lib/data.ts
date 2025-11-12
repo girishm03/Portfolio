@@ -31,6 +31,21 @@ export const projects = [
   },
 ];
 
+export const education = [
+  {
+    degree: "Master of Science in Computer Science",
+    institution: "University of Technology",
+    year: "2018 - 2020",
+    description: "Focused on advanced algorithms, machine learning, and distributed systems. Thesis on scalable data processing pipelines.",
+  },
+  {
+    degree: "Bachelor of Science in Software Engineering",
+    institution: "State University",
+    year: "2014 - 2018",
+    description: "Graduated with honors. Coursework included data structures, web development, and software architecture.",
+  },
+];
+
 export const skills = [
   {
     category: "Languages",
