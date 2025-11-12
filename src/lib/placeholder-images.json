@@ -1,3 +1,10 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "about-me-portrait",
+      "description": "A professional portrait of the developer.",
+      "imageUrl": "https://images.unsplash.com/photo-1544168190-79c17527004f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cHJvZmVzc2lvbmFsJTIwcG9ydHJhaXR8ZW58MHx8fHwxNzYyODYwOTcwfDA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "professional portrait"
+    }
+  ]
 }
