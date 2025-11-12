@@ -15,7 +15,6 @@ import { defaultProjects, defaultEducation, defaultSkills, defaultSocialLinks } 
 const defaultData = {
   hero: {
     name: 'Girish M',
-    title: 'Python Developer',
   },
   about: {
     description1: "As a dedicated Python developer with over 5 years of experience, I specialize in crafting high-performance backend systems and scalable web applications. My journey in software development began with a fascination for automation, which quickly evolved into a passion for building solutions that are not only functional but also elegant and efficient.",
@@ -157,14 +156,6 @@ export default function AdminPage() {
                   onChange={(e) => handleInputChange('hero', 'name', e.target.value)}
                 />
               </div>
-              <div>
-                <Label htmlFor="hero-title">Title</Label>
-                <Input
-                  id="hero-title"
-                  value={data.hero.title}
-                  onChange={(e) => handleInputChange('hero', 'title', e.target.value)}
-                />
-              </div>
             </CardContent>
           </Card>
 
@@ -275,7 +266,7 @@ export default function AdminPage() {
                          <div key={index} className="flex items-end gap-2 border p-2 rounded-md">
                             <div className="flex-1 grid grid-cols-3 gap-2">
                                 <Input value={skill.name} onChange={(e) => handleListItemChange('skills', index, 'name', e.target.value)} placeholder="Skill Name"/>
-                                <Input type="number" value={skill.level} onChange={(e) => handleListItemChange('skills', index, 'level', parseInt(e.target.value))} placeholder="Level (1-100)"/>
+                                <Input type="number" value={skill.level || 0} onChange={(e) => handleListItemChange('skills', index, 'level', parseInt(e.target.value) || 0)} placeholder="Level (1-100)"/>
                                 <Input value={skill.iconName} onChange={(e) => handleListItemChange('skills', index, 'iconName', e.target.value)} placeholder="Icon Name"/>
                             </div>
                             <Button variant="destructive" size="icon" onClick={() => removeListItem('skills', index)}><Trash2/></Button>
@@ -328,5 +319,3 @@ export default function AdminPage() {
     </div>
   );
 }
-
-    
