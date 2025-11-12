@@ -72,9 +72,14 @@ export const defaultData = {
       { name: "Bootstrap", level: 85, iconName: "" },
       { name: "MySQL", level: 80, iconName: "" },
       { name: "JavaScript", level: 75, iconName: "" },
+      { name: "GitHub", level: 95, iconName: "" },
+      { name: "Rest API", level: 85, iconName: "" },
+      { name: "Angular", level: 70, iconName: "" },
       { name: "Kali-Linux", level: 85, iconName: "" },
       { name: "Shodan", level: 70, iconName: "" },
-      { name: "GitHub", level: 95, iconName: "" },
+      { name: "Nmap", level: 80, iconName: "" },
+      { name: "Hydra", level: 75, iconName: "" },
+      { name: "Penetration Testing", level: 80, iconName: "" },
   ],
   socials: [
       {
