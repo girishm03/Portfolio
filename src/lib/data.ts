@@ -105,7 +105,7 @@ export const defaultData = {
       },
       {
         label: "Instagram",
-        href: "https://www.instagram.com/girish.m_23?igsh=MWd5N3A3N3Y5Znk1aQ==",
+        href: "https://www.instagram.com/limbr0?igsh=MWd5N3A3N3Y5Znk1aQ==",
         iconName: "Instagram",
       },
   ],
