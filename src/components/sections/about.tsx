@@ -29,11 +29,6 @@ export function About() {
             </p>
           )}
         </div>
-        <div className="flex justify-center">
-          <Button asChild>
-            <Link href={about.resumeUrl} download="resume.pdf">Resume</Link>
-          </Button>
-        </div>
       </div>
 
       <div className="grid gap-12 md:grid-cols-2 w-full pt-12 border-t">
@@ -47,10 +42,13 @@ export function About() {
             ))}
           </ul>
         </div>
-        <div className="space-y-4">
+        <div className="space-y-6">
           <h3 className="text-2xl font-bold font-headline">Connect with Me</h3>
-          <div className="flex justify-center">
+          <div className="flex flex-col items-center gap-6">
             <Socials />
+            <Button asChild>
+              <Link href={about.resumeUrl} download="resume.pdf">Resume</Link>
+            </Button>
           </div>
         </div>
       </div>
