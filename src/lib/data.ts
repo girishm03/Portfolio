@@ -7,9 +7,11 @@ export const defaultData = {
     roles: [
       "Python Developer",
       "Cyber Security Enthusiast",
-      "Backend Engineer",
-      "Django Developer",
-      "Web Security Explorer"
+      "Full-Stack Developer",
+      "Backend Development Enthusiast",
+      "Continuous Tech Learner",
+      "Building Secure Applications",
+      "Learning. Building. Securing."
     ]
   },
   about: {
