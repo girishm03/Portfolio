@@ -1,5 +1,3 @@
-
-
 import { PythonIcon, DjangoIcon, ReactIcon, FlaskIcon } from "@/components/icons";
 
 export const defaultData = {
@@ -95,7 +93,7 @@ export const defaultData = {
       },
       {
         label: "WhatsApp",
-        href: "https://wa.me/919961711265",
+        href: "https://wa.me/918606888616",
         iconName: "MessageSquare",
       },
       {
