@@ -106,6 +106,16 @@ export const defaultData = {
         href: "https://www.instagram.com/limbr0?igsh=MWd5N3A3N3Y5Znk1aQ==",
         iconName: "Instagram",
       },
+      {
+        label: "Facebook",
+        href: "https://www.facebook.com/share/1Rd79USn3Z/",
+        iconName: "Facebook",
+      },
+      {
+        label: "Telegram",
+        href: "https://t.me/girish_m24",
+        iconName: "Send",
+      },
   ],
 };
 

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Github, Linkedin, Instagram, Twitter, MessageSquare } from "lucide-react";
+import { Github, Linkedin, Instagram, Twitter, MessageSquare, Facebook, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { defaultSocialLinks } from "@/lib/data";
 
@@ -11,13 +11,15 @@ const iconMap: { [key: string]: React.ComponentType<any> } = {
   Twitter,
   MessageSquare,
   Github,
+  Facebook,
+  Send,
 };
 
 export function Socials() {
   const socialLinks = defaultSocialLinks || [];
 
   return (
-    <div className="flex justify-center space-x-4">
+    <div className="flex justify-center flex-wrap gap-4">
       {socialLinks.map((social) => {
         const Icon = iconMap[social.iconName];
         return (
