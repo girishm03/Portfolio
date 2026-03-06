@@ -12,16 +12,6 @@ export function Hero() {
   const profileImageUrl = images.profile;
   const heroBgImageUrl = images.heroBg;
 
-  const roles = [
-      "Python Developer",
-      "Full Stack Developer",
-      "Cyber Security Analyst",
-      "BCA Graduate",
-      "Django Developer",
-      "Web Developer",
-      "Front-end Developer"
-  ]
-
   return (
     <section className="relative w-full h-[80vh] md:h-screen flex items-center justify-center">
       {heroBgImageUrl && (
@@ -45,15 +35,18 @@ export function Hero() {
               priority
             />
           )}
-          <div className="space-y-2">
+          <div className="space-y-4">
             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl font-headline">
               {hero.name}
             </h1>
-            <div className="mx-auto max-w-[700px] text-primary md:text-xl">
-              <TypingAnimation roles={roles} />
+            <p className="text-xl md:text-2xl font-medium text-primary-foreground/90 max-w-[800px] mx-auto italic">
+              {hero.tagline}
+            </p>
+            <div className="mx-auto max-w-[700px] text-primary text-lg md:text-xl font-semibold">
+              <TypingAnimation roles={hero.roles} />
             </div>
           </div>
-          <div className="space-x-4">
+          <div className="space-x-4 pt-4">
             <Button asChild>
               <Link href="#projects">View My Work</Link>
             </Button>

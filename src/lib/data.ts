@@ -3,9 +3,17 @@ import { PythonIcon, DjangoIcon, ReactIcon, FlaskIcon } from "@/components/icons
 export const defaultData = {
   hero: {
     name: 'Girish M',
+    tagline: 'Aspiring Python Developer | Interested in Cybersecurity | Building Secure and Efficient Applications.',
+    roles: [
+      "Python Developer",
+      "Cyber Security Enthusiast",
+      "Backend Engineer",
+      "Django Developer",
+      "Web Security Explorer"
+    ]
   },
   about: {
-    description1: "Tech enthusiast with a keen interest in both cybersecurity and Python development. Strong understanding of network security fundamentals and hands-on experience in using Python. Passionate about ethical hacking, penetration testing, and developing secure applications. Always eager to learn and explore new technologies in the field of cybersecurity and software development.",
+    description1: "I am a passionate Python developer with a strong interest in building secure and efficient applications. I have hands-on experience in Python and a growing interest in cybersecurity, including network security and ethical hacking. I am continuously learning new technologies and improving my skills to develop reliable and secure software solutions.",
     description2: "",
     resumeUrl: '/resume.pdf',
     email: 'girishmadhu03@gmail.com',
