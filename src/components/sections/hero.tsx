@@ -39,9 +39,11 @@ export function Hero() {
             <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl font-headline">
               {hero.name}
             </h1>
-            <p className="text-xl md:text-2xl font-medium text-primary-foreground/90 max-w-[800px] mx-auto italic">
-              {hero.tagline}
-            </p>
+            {hero.tagline && (
+              <p className="text-xl md:text-2xl font-medium text-primary-foreground/90 max-w-[800px] mx-auto italic">
+                {hero.tagline}
+              </p>
+            )}
             <div className="mx-auto max-w-[700px] text-primary text-lg md:text-xl font-semibold">
               <TypingAnimation roles={hero.roles} />
             </div>

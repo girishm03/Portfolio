@@ -3,7 +3,7 @@ import { PythonIcon, DjangoIcon, ReactIcon, FlaskIcon } from "@/components/icons
 export const defaultData = {
   hero: {
     name: 'Girish M',
-    tagline: 'Aspiring Python Developer | Interested in Cybersecurity | Building Secure and Efficient Applications.',
+    tagline: '',
     roles: [
       "Python Developer",
       "Cyber Security Enthusiast",
