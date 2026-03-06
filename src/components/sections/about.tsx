@@ -16,26 +16,31 @@ export function About() {
   ];
 
   return (
-    <div className="grid gap-12 md:grid-cols-2">
+    <div className="flex flex-col items-center text-center space-y-12 max-w-4xl mx-auto">
       <div className="space-y-6">
         <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl font-headline">About Me</h2>
-        <div className="space-y-4">
+        <div className="space-y-4 max-w-2xl mx-auto">
           <p className="text-muted-foreground text-lg">
             {about.description1}
           </p>
-           <p className="text-muted-foreground text-lg">
+          {about.description2 && (
+            <p className="text-muted-foreground text-lg">
               {about.description2}
-          </p>
+            </p>
+          )}
         </div>
-        <Button asChild>
-          <Link href={about.resumeUrl} download="resume.pdf">Resume</Link>
-        </Button>
+        <div className="flex justify-center">
+          <Button asChild>
+            <Link href={about.resumeUrl} download="resume.pdf">Resume</Link>
+          </Button>
+        </div>
       </div>
-      <div className="space-y-8 md:pt-14">
+
+      <div className="grid gap-12 md:grid-cols-2 w-full pt-12 border-t">
         <div className="space-y-4">
           <h3 className="text-2xl font-bold font-headline">Personal Information</h3>
           <ul className="space-y-2 text-muted-foreground">
-            {personalInfo.map(info => (
+            {personalInfo.map((info) => (
               <li key={info.label}>
                 <span className="font-semibold text-foreground">{info.label}:</span> {info.value}
               </li>
@@ -44,7 +49,9 @@ export function About() {
         </div>
         <div className="space-y-4">
           <h3 className="text-2xl font-bold font-headline">Connect with Me</h3>
-          <Socials />
+          <div className="flex justify-center">
+            <Socials />
+          </div>
         </div>
       </div>
     </div>
