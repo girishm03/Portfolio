@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Github, Linkedin, Instagram, Twitter, MessageSquare, Facebook, Send } from "lucide-react";
+import { Github, Linkedin, Instagram, Twitter, MessageSquare, Facebook, Send, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { defaultSocialLinks } from "@/lib/data";
 
@@ -13,6 +13,7 @@ const iconMap: { [key: string]: React.ComponentType<any> } = {
   Github,
   Facebook,
   Send,
+  Mail,
 };
 
 export function Socials() {
